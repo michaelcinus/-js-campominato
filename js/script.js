@@ -1,13 +1,13 @@
 //GENERA 16 numeri casuali tra 1 e 100 (no duplicati)
-var numeriRandom = [];
+var numeriRandom = [generaNumeroRandom(1, 100)];
 var random;
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < 4; ++i) {
     random = generaNumeroRandom(1, 100)
     var nuovoNumero = true;
     for (var cont = 0; cont < i; cont++){
         if (numeriRandom[cont] == random){
             nuovoNumero = false;
-        } else if (nuovo = true) {
+        } else if (nuovoNumero == true) {
             numeriRandom[i] = random;
         } else {
             i--;
@@ -18,6 +18,8 @@ console.log(numeriRandom);
 
 
 //CHIEDI all'utente di inserire (100 - 16)numeri tra 1 e 100 (no duplicati)
+
+
 
 //COMUNICA all'utente il punteggio
 
