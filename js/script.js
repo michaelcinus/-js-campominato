@@ -1,8 +1,28 @@
+//l'utente sceglie la difficoltà
+var difficoltà = prompt("scegli la difficoltà : '0' '1' '2' ");
+var max;
+switch (difficoltà) {
+    case "0" :
+    max = 100;
+    break; 
+    case "1" :
+    max = 80;
+    break; 
+    case "2" :
+    max = 50;
+    break; 
+    default:
+    alert ("La difficoltà inserita non esiste")
+}
+
+console.log(max);
+
+
 //GENERA 16 numeri casuali tra 1 e 100 (no duplicati)
 var numeriRandom = [];
 var random;
-for (var i = 0; i < 4; ++i) {
-    random = generaNumeroRandom(1, 100);
+for (var i = 0; i < 16; ++i) {
+    random = generaNumeroRandom(1, max);
     var boolean = numeriRandom.includes(random);
     if (boolean == false) {
         numeriRandom[i] = random;
@@ -17,7 +37,7 @@ console.log(numeriRandom);
 var numeriInseriti = [];
 var punteggio = 0;
 
-for (var i = 0; i < 4; ++i) {
+for (var i = 0; i < max - 16; ++i) {
     inserito = parseInt(prompt("inserisci un numero da 1 a 100"));
     var boolean = numeriInseriti.includes(inserito)
     if (boolean == false) {
