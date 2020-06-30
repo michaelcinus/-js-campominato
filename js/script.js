@@ -47,18 +47,24 @@ for (var i = 0; i < max - 16; ++i) {
         i--;
     }
 
-    //VERIFICO se il numero inserito dall'utente è presente nell'array generato
-    for (var cont = 0; cont < numeriRandom.length; cont++){
-        if (numeriInseriti[i] == numeriRandom[cont]) {
-        var ris = true;
-       }
-    }
-    
-    if (ris == true) {
-        document.getElementById("h1").innerHTML = "HAI PERSO! una bomba è esplosa. Hai totalizzato " + punteggio + " punti";
-        break;
-    } else{
-        punteggio++;
+    //VERIFICO se il numero inserito non sia superiore del range max
+    if (numeriInseriti[i] > max) {
+        alert("Numero inserito troppo grande")
+        i--
+    } else {
+        //VERIFICO se il numero inserito dall'utente è presente nell'array generato
+        for (var cont = 0; cont < numeriRandom.length; cont++){
+            if (numeriInseriti[i] == numeriRandom[cont]) {
+            var ris = true;
+           }
+        }
+        
+        if (ris == true) {
+            document.getElementById("h1").innerHTML = "HAI PERSO! una bomba è esplosa. Hai totalizzato " + punteggio + " punti";
+            break;
+        } else{
+            punteggio++;
+        }
     }
 }  
 console.log(numeriInseriti);
