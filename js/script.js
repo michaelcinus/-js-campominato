@@ -9,7 +9,7 @@ switch (difficoltà) {
     max = 80;
     break; 
     case "2" :
-    max = 20;
+    max = 60;
     break; 
     default:
     alert ("La difficoltà inserita non esiste")
@@ -23,8 +23,8 @@ var numeriRandom = [];
 var random;
 for (var i = 0; i < 16; ++i) {
     random = generaNumeroRandom(1, max);
-    var boolean = numeriRandom.includes(random);
-    if (boolean == false) {
+    //var boolean = numeriRandom.includes(random);
+    if (inArray(numeriRandom, random) !=true) {
         numeriRandom[i] = random;
     } else {
         i--;
@@ -39,8 +39,8 @@ var punteggio = 0;
 
 for (var i = 0; i < max - 16; ++i) {
     inserito = parseInt(prompt("inserisci un numero da 1 a " + max));
-    var boolean = numeriInseriti.includes(inserito)
-    if (boolean == false) {
+    //var boolean = numeriInseriti.includes(inserito)
+    if (inArray(numeriInseriti, inserito) !=true) {
         numeriInseriti[i] = inserito;
     } else {
         alert("Numero già inserito");
@@ -53,13 +53,7 @@ for (var i = 0; i < max - 16; ++i) {
         i--
     } else {
         //VERIFICO se il numero inserito dall'utente è presente nell'array generato
-        for (var cont = 0; cont < numeriRandom.length; cont++){
-            if (numeriInseriti[i] == numeriRandom[cont]) {
-            var ris = true;
-           }
-        }
-        
-        if (ris == true) {
+        if (inArray(numeriRandom, inserito)) {
             document.getElementById("h1").innerHTML = "HAI PERSO! una bomba è esplosa. Hai totalizzato " + punteggio + " punti";
             break;
         } else{
@@ -83,4 +77,17 @@ function generaNumeroRandom(min, max) {
     max = Math.floor(max);
     var result = Math.floor(Math.random() * (max - min + 1)) + min;
     return result;
+}
+
+//FUNCTION verifica numero già esistente
+function inArray (array, elemento) {
+    var i = 0;
+    var trovato = false;
+    while (i < array.length && trovato == false) {
+        if (array[i] == elemento){
+            trovato = true;
+        } 
+        i++;
+    }
+    return trovato;
 }
