@@ -1,28 +1,30 @@
 //l'utente sceglie la difficoltà
 var difficoltà = prompt("scegli la difficoltà : '0' '1' '2' ");
 var max;
+var min;
 switch (difficoltà) {
     case "0" :
-    max = 100;
-    break; 
+     min = 1;
+     max = 100;
+     break; 
     case "1" :
-    max = 80;
-    break; 
+     min = 1;
+     max = 80;
+     break; 
     case "2" :
-    max = 60;
-    break; 
+     min = 1;
+     max = 60;
+     break; 
     default:
-    alert ("La difficoltà inserita non esiste")
+     alert ("La difficoltà inserita non esiste")
 }
-
 console.log(max);
-
 
 //GENERA 16 numeri casuali tra 1 e max (no duplicati)
 var numeriRandom = [];
 var random;
 for (var i = 0; i < 16; ++i) {
-    random = generaNumeroRandom(1, max);
+    random = generaNumeroRandom(min, max);
     if (inArray(numeriRandom, random) !=true) {
         numeriRandom[i] = random;
     } else {
@@ -30,7 +32,6 @@ for (var i = 0; i < 16; ++i) {
     }
 }
 console.log(numeriRandom);
-
 
 //CHIEDI all'utente di inserire (max - 16)numeri tra 1 e max (no duplicati)
 var numeriInseriti = [];
@@ -46,13 +47,14 @@ for (var i = 0; i < max - 16; ++i) {
     }
 
     //VERIFICO se il numero inserito non sia superiore del range max
-    if (numeriInseriti[i] > max) {
-        alert("Numero inserito troppo grande")
+    if (inserito > max || inserito < min || isNaN(inserito)) {
+        alert("Numero inserito non è valido")
         i--
     } else {
         //VERIFICO se il numero inserito dall'utente è presente nell'array generato
         if (inArray(numeriRandom, inserito)) {
             document.getElementById("h1").innerHTML = "HAI PERSO! una bomba è esplosa. Hai totalizzato " + punteggio + " punti";
+            break;
         } else{
             punteggio++;
         }
@@ -60,7 +62,6 @@ for (var i = 0; i < max - 16; ++i) {
 }  
 console.log(numeriInseriti);
 console.log(punteggio);
-
 
 //COMUNICA all'utente il punteggio
 if (punteggio == numeriInseriti.length){
