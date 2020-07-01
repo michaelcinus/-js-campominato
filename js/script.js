@@ -23,7 +23,6 @@ var numeriRandom = [];
 var random;
 for (var i = 0; i < 16; ++i) {
     random = generaNumeroRandom(1, max);
-    //var boolean = numeriRandom.includes(random);
     if (inArray(numeriRandom, random) !=true) {
         numeriRandom[i] = random;
     } else {
@@ -39,7 +38,6 @@ var punteggio = 0;
 
 for (var i = 0; i < max - 16; ++i) {
     inserito = parseInt(prompt("inserisci un numero da 1 a " + max));
-    //var boolean = numeriInseriti.includes(inserito)
     if (inArray(numeriInseriti, inserito) !=true) {
         numeriInseriti[i] = inserito;
     } else {
@@ -55,7 +53,6 @@ for (var i = 0; i < max - 16; ++i) {
         //VERIFICO se il numero inserito dall'utente è presente nell'array generato
         if (inArray(numeriRandom, inserito)) {
             document.getElementById("h1").innerHTML = "HAI PERSO! una bomba è esplosa. Hai totalizzato " + punteggio + " punti";
-            break;
         } else{
             punteggio++;
         }
@@ -67,7 +64,7 @@ console.log(punteggio);
 
 //COMUNICA all'utente il punteggio
 if (punteggio == numeriInseriti.length){
-    document.getElementById("risultato").innerHTML = "HAI VINTO! hai totalizzato " + punteggio + " punti";
+    document.getElementById("h1").innerHTML = "HAI VINTO! hai totalizzato " + punteggio + " punti";
 
 }
 
