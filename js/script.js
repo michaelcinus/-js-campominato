@@ -16,21 +16,22 @@ switch (difficoltà) {
      max = 60;
      break; 
     default:
-     alert ("La difficoltà inserita non esiste")
-}
+        min = 1;
+        max = 100;
+    }
 
 //GENERA 16 numeri casuali tra 1 e max (no duplicati)
 var numeriRandom = [];
 var random;
-var i = 0;
-while (i < 16) {
+var contRandom = 0;
+while (contRandom < 16) {
     random = generaNumeroRandom(min, max);
     if (inArray(numeriRandom, random) !=true) {
         numeriRandom.push(random);
+        contRandom++;
     }
-    i++;
 }
-console.log(numeriRandom);
+console.log(numeriRandom, contRandom);
 
 //CHIEDI all'utente di inserire (max - 16)numeri tra 1 e max (no duplicati)
 var numeriInseriti = [];
@@ -38,28 +39,23 @@ var punteggio = 0;
 var i = 0; 
 var bomba = false;
 
-while (i < max - 16 && bomba == false) {
+while (i < max - contRandom && bomba == false) {
     inserito = parseInt(prompt("inserisci un numero da 1 a " + max));
-    if (inArray(numeriInseriti, inserito) !=true) {
-        numeriInseriti.push(inserito);
-    } else {
+    //VERIFICO se il numero inserito è già presente nell'array numeri Inseriti
+    if (inArray(numeriInseriti, inserito) ==true) {
         alert("Numero già inserito");
-    }
-
-    //VERIFICO se il numero inserito non sia superiore del range max
-    if (inserito > max || inserito < min || isNaN(inserito)) {
+    }   //VERIFICO se il numero inserito non sia superiore del range max, o min o NaN
+    else if (inserito > max || inserito < min || isNaN(inserito)) {
         alert("Numero inserito non è valido")
-        numeriInseriti.pop(inserito);
+    }   //VERIFICO se il numero inserito dall'utente è presente nell'array numeri Random
+    else if (inArray(numeriRandom, inserito)) {
+        document.getElementById("h1").innerHTML = "HAI PERSO! una bomba è esplosa. Hai totalizzato " + punteggio + " punti";
+        bomba = true;
     } else {
-        //VERIFICO se il numero inserito dall'utente è presente nell'array generato
-        if (inArray(numeriRandom, inserito)) {
-            document.getElementById("h1").innerHTML = "HAI PERSO! una bomba è esplosa. Hai totalizzato " + punteggio + " punti";
-            bomba = true;
-        } else{
-            punteggio++;
-        }
+        numeriInseriti.push(inserito);
+        punteggio++;
+        i++;
     }
-    i++;
 }  
 console.log(numeriInseriti);
 console.log(punteggio);
